@@ -8,6 +8,7 @@ import { CountryService } from '../../services/country.service';
 })
 export class ByCountryComponent implements OnInit {
   term: string = ''
+  thereIsError: boolean = false
 
   constructor(private countryService: CountryService) { }
 
@@ -15,10 +16,14 @@ export class ByCountryComponent implements OnInit {
   }
 
   search(): void {
+    this.thereIsError = false
     console.log(this.term);
-    this.countryService.searchCountry(this.term).subscribe(
-      resp => {
-        console.log(resp);
+    this.countryService.searchCountry(this.term)
+      .subscribe({
+        next: v => console.log(v),
+        error: err => {
+          this.thereIsError = true
+        }
       }
     )
   }
