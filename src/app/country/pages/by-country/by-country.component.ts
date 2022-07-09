@@ -20,12 +20,13 @@ export class ByCountryComponent implements OnInit {
     console.log(this.term);
     this.countryService.searchCountry(this.term)
       .subscribe({
-        next: v => console.log(v),
+        next: countries => {
+          console.log(countries)
+        },
         error: err => {
           this.thereIsError = true
         }
-      }
-    )
+      })
   }
 
 }
