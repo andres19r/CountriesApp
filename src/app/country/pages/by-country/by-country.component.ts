@@ -32,4 +32,9 @@ export class ByCountryComponent implements OnInit {
       })
   }
 
+  suggestions(term: string) {
+    this.thereIsError = false
+    // TODO: create suggestions
+  }
+
 }
