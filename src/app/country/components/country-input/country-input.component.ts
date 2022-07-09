@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
 
 @Component({
@@ -11,15 +11,14 @@ export class CountryInputComponent implements OnInit {
   @Output() onDebounce: EventEmitter<string> = new EventEmitter();
   debouncer: Subject<string> = new Subject();
   term: string = '';
+  @Input() placeholder = ''
 
   constructor() {}
 
   ngOnInit(): void {
     this.debouncer
       .pipe(debounceTime(300))
-      .subscribe(value => {
-        this.onDebounce.emit(value)
-    })
+      .subscribe(value => this.onDebounce.emit(value))
   }
 
   search() {
