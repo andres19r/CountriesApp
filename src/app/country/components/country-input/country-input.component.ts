@@ -11,7 +11,7 @@ export class CountryInputComponent implements OnInit {
   @Output() onDebounce: EventEmitter<string> = new EventEmitter();
   debouncer: Subject<string> = new Subject();
   term: string = '';
-  @Input() placeholder = ''
+  @Input() placeholder: string = ''
 
   constructor() {}
 
