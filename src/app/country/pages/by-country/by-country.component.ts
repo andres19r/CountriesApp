@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./by-country.component.css']
 })
 export class ByCountryComponent implements OnInit {
+  term: string = ''
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  search(): void {
+    console.log(this.term);
   }
 
 }
