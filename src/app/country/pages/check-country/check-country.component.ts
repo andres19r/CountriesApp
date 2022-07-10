@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CountryService } from '../../services/country.service';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'app-check-country',
@@ -9,6 +10,8 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./check-country.component.css'],
 })
 export class CheckCountryComponent implements OnInit {
+  country!: Country;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private countryService: CountryService
@@ -24,10 +27,9 @@ export class CheckCountryComponent implements OnInit {
 
     this.activatedRoute.params
       .pipe(
-        switchMap(({ id }) => this.countryService.getCountryByAlpha(id))
+        switchMap(({ id }) => this.countryService.getCountryByAlpha(id)),
+        tap(console.log)
       )
-      .subscribe(([ resp ]) => {
-        console.log(resp);
-      });
+      .subscribe(([ country ]) => this.country = country);
   }
 }

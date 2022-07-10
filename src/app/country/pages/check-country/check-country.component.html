@@ -1,1 +1,25 @@
-<p>check-country works!</p>
+<div *ngIf="!country; else divCountry" class="alert alert-info">
+	Please wait...
+</div>
+
+<ng-template #divCountry>
+	<div class="row">
+		<div class="col-12">
+			<h1>Country: <small>{{country.name.common}}</small></h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4">
+			<h3>Flag</h3>
+			<img class="img-thumbnail" [src]="country.flags.png" alt="">
+		</div>
+		<div class="col">
+			<h3>Information</h3>
+			<ul class="list-group">
+				<li class="list-group-item">
+					<strong>Population</strong> {{country.population | number}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</ng-template>
